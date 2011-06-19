@@ -1,5 +1,5 @@
 project HMMoC-BFloat-Algebra
-    :
+    : usage-requirements <include>.
     : requirements <warnings>off ;
 
 exe tests
