@@ -1,0 +1,64 @@
+This is HMMoC-BFloat-Algebra, a tiny C++ library supplying the
+Algebra<> template, for polymorphic representation of non-negative
+floating-point values in either native (eg double), log-transformed,
+or BFloat representations.  BFloat is the Buoyant Float type, allowing
+fixed-precision representation at an arbitrary precision range.  The
+library is based on code from: Lunter G. HMMoC—a compiler for hidden
+Markov models. Bioinformatics (2007) 23(18): 2485-2487. The code was
+derived by Ian Holmes and Gerton Lunter from Holmes I, Rubin GM. An
+expectation maximization algorithm for training hidden substitution
+models.  J Mol Biol. 2002 Apr 12;317(5):753-64.  You may use at will,
+subject to the license (LGPL v3), but *please cite those two papers*
+in your documentation and publications associated with uses of this
+library.  Thank you!
+
+Copyright (C) 2011 by Paul T Edlefsen, Fred Hutchinson Cancer Research
+Center.
+
+To use, simply include Algebra.hpp in your code, and compile-in Algebra.cpp.  Alternately, use the provided makefile to make the HMMoC-BFloat-Algebra library, and compile that into your code.  An example is provided (make tests) -- note that this isn't so much a test of the library as it is a test of the compilation and linking.
+
+-- BOOST serialization support:
+By default, boost serialization support is compiled in, so you'll need to link with -lboost_serialization (and make sure the boost dirs are in your include and linking paths) -- or if you don't want boost, compile with -DNBOOST_SERIALIZATION (or just #define NBOOST_SERIALIZATION in your code before #include -ing Algebra.hpp).  If you use the provided Makefile, see where BOOST_CFLAGS is defined.
+
+On my system, the boost libraries are in /usr/local/lib, and boost includes are in /usr/local/include.  I got them there like so:
+# Retrieve boost from http://sourceforge.net/projects/boost/files/boost/1.46.1/
+# Unpack it.  From one dir above it:
+cd boost_1_46_1
+./bootstrap.sh 
+# Skip unless you want to use MPI in boost:
+echo "using mpi ;" >> project-config.jam
+sudo bjam install
+# Now go into the HMMoC-BFloat-Algebra directory.
+cd HMMoC-BFloat-Algebra
+ln -s /usr/local/include boost-include
+ln -s /usr/local/lib boost-lib
+
+There are convenient #defines at the bottom of Algebra.hpp for simple use.  For instance:
+  typedef bfloat ProbabilityType;
+  //typedef logspace ProbabilityType;
+  //typedef floatrealspace ProbabilityType;
+  //typedef doublerealspace ProbabilityType;
+
+Note that some of the Algebra types must never go negative (so
+effectively to remain polymorphic, none of them can).  If you compile
+with -DNDEBUG, there will be no sanity checking in the code to help
+prevent negative values (but it will run much faster without those
+checks!).  If you find yourself performing subtractions that might
+result in negative results, you must implement the checking yourself
+and make sure to subtract the smaller from the larger value.
+
+This code has not been rigourously tested, so use it at your own
+risk/peril.  If you find something amiss, please let us know!  Please
+fix it if you are able!  Your contributions are most welcome.
+
+Lastly, though we don't require it, we'd love to hear about it if you
+use these classes in your own code.  Find the HMMoC-BFloat-Algebra
+project on GitHub and leave us a note!  Or email me: pedlefsen at
+gmail dot com.  And please, don't forget to cite the papers listed at
+the top of this document.
+
+Thank you,
+  Paul
+
+Paul T. Edlefsen
+June 18, 2011
