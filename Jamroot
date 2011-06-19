@@ -1,0 +1,11 @@
+project HMMoC-BFloat-Algebra
+    :
+    : requirements <warnings>off ;
+
+exe tests
+    : Tests.cpp libHMMoC-BFloat-Algebra boost_serialization
+    : <include>./boost-include ;
+
+lib libHMMoC-BFloat-Algebra : Algebra.cpp : <link>static <include>./boost-include ;
+
+lib boost_serialization : : <file>./boost-lib/libboost_serialization.a ;
