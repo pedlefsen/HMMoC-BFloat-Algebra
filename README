@@ -43,8 +43,10 @@ If you are a boost bjam user, a Jamroot is provided as an alternative
 to the Makefile.  After creating the boost-include and boost-lib links
 (see above), do:
 bjam release
-.. and then look for the library and the 'tests' program in the 'bin'
-subdir.
+bjam dist
+..and you'll find that libHMMoC-BFloat-Algebra.a is now in the current directory
+..or if you have su permissions and want to install it in /usr/local/lib, do:
+sudo bjam install
 
 -- #defines
 There are convenient #defines at the bottom of Algebra.hpp for simple
