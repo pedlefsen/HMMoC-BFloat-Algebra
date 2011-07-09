@@ -8,7 +8,7 @@ Markov models. Bioinformatics (2007) 23(18): 2485-2487. The code was
 derived by Ian Holmes and Gerton Lunter from Holmes I, Rubin GM. An
 expectation maximization algorithm for training hidden substitution
 models.  J Mol Biol. 2002 Apr 12;317(5):753-64.  You may use at will,
-subject to the license (LGPL v3), but *please cite those two papers*
+subject to the license (Apache v2.0), but *please cite those two papers*
 in your documentation and publications associated with uses of this
 library.  Thank you!
 
