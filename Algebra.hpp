@@ -73,6 +73,10 @@
 #include <cmath> // for isinf and isnan
 #include <limits>
 
+//TAH 11/01/2011  this defines uint32_t, used below
+#include <stdint.h>
+
+
 // You can control some inlining recommentations to the compiler using these:
 #define ALGEBRA_INLINE_ARITHMETIC inline
 #define ALGEBRA_INLINE_CAST inline
@@ -1556,31 +1560,30 @@ BFloat::
   BFloat ( FloatRealspace const & copy_from ) {
     *this = copy_from.x;
   };
+
+//TAH 11/01/11 Modified next four functions to compile with g++ v>4.5
 inline
-BFloat::BFloat &
-BFloat::
-  operator= ( Logspace const & copy_from ) {
+BFloat &
+  BFloat::operator= ( Logspace const & copy_from ) {
     *this = bfloat_doubleexp( copy_from.x );
     return *this;
   };
+
 inline
-BFloat::BFloat &
-BFloat::
-  operator= ( DoubleRealspace const & copy_from ) {
+BFloat &
+  BFloat::operator= ( DoubleRealspace const & copy_from ) {
     *this = copy_from.x;
     return *this;
   };
 inline
-BFloat::BFloat &
-BFloat::
-  operator= ( LongDoubleRealspace const & copy_from ) {
-  *this = static_cast<double>( copy_from.x );
+BFloat &
+  BFloat::operator= ( LongDoubleRealspace const & copy_from ) {
+    *this = static_cast<double>( copy_from.x );
     return *this;
   };
 inline
-BFloat::BFloat &
-BFloat::
-  operator= ( FloatRealspace const & copy_from ) {
+BFloat &
+  BFloat::operator= ( FloatRealspace const & copy_from ) {
     *this = copy_from.x;
     return *this;
   };
