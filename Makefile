@@ -10,7 +10,7 @@
 # OPTIMIZE with the -O option.  Override from the command line for
 # building debug versions.
 #
-#OPTFLAGS	= -O3 -funroll-loops -DNDEBUG=1
+OPTFLAGS	= -O3 -funroll-loops -DNDEBUG=1
 
 #========================================
 ## To compile against the HMMoC-BFloat-Algebra library, use:
